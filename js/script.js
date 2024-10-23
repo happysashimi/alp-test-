@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let heroIndex = 0;
     const heroItems = [
         { type: 'video', src: 'Content/HV/HV1.mp4' },
-        { type: 'image', src: 'Content/HV/HV2.jpg' },
+        { type: 'image', src: 'Content/HV/HV2.png' },
         { type: 'image', src: 'Content/HV/HV3.jpg' },
         { type: 'image', src: 'Content/HV/HV4.jpg' }
     ];
@@ -23,9 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (item.type === 'video') {
             const video = document.createElement('video');
             video.src = item.src;
-            video.autoplay = true;
+            video.autoplay = false;  // Video will be paused initially
             video.loop = false;
-            video.muted = true;
+            video.muted = false;     // Ensure the video is not muted
+            video.volume = 1.0;      // Set the volume to 100% (1.0)
             video.style.width = '100%';
             video.style.height = '100%';
             video.style.objectFit = 'cover';
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             heroBackground.appendChild(video);
         }
     }
+    
 
     function nextHeroItem() {
         heroIndex = (heroIndex + 1) % heroItems.length;
@@ -41,14 +43,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     showHeroItem(heroIndex);
+    
+    // Select the video and the button
+    const videoButton = document.querySelector('.video-button');
+    const video = document.querySelector('.hero-background video');
 
-    // Spacebar to unmute video
-    document.addEventListener('keydown', function(e) {
-        if (e.code === 'Space') {
-            const video = heroBackground.querySelector('video');
-            if (video) video.muted = !video.muted;
+    // Add a click event listener to the button
+    videoButton.addEventListener('click', function () {
+        // Check if the video is playing
+        if (video.paused) {
+            video.play();  // Play the video
+            videoButton.textContent = '❚❚';  // Change button to pause icon
+        } else {
+            video.pause();  // Pause the video
+            videoButton.textContent = '►';  // Change button to play icon
         }
     });
+
+
 
     // Language Toggle Functionality
     const languageToggle = document.getElementById('languageToggle');
@@ -206,6 +218,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listeners
     window.addEventListener('resize', adjustFontSize);
+
+    // Toggle the hamburger menu for mobile
+    document.addEventListener('DOMContentLoaded', function () {
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const menuExpanded = document.querySelector('.menu-expanded');
+    
+        // Toggle the visibility of the menu on click
+        hamburgerMenu.addEventListener('click', function () {
+            menuExpanded.classList.toggle('show');
+        });
+    });
+    
+
 });
 
 // Orientation detection and warning functionality
@@ -234,8 +259,3 @@ function hideOrientationWarning() {
     }
 }
 
-// Call the orientation detection function after the page loads
-detectOrientation();
-
-// Listen for changes in the window size (when the user rotates the device)
-window.addEventListener('resize', detectOrientation);
