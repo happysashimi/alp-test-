@@ -918,6 +918,55 @@ header {
         outline: 3px solid var(--accent-blue);
         outline-offset: 2px;
     }
+
+
+    /* Add the round button styles here */
+
+/* Round Button Styles */
+.video-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--light-blue);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+}
+
+.video-button:hover {
+    background-color: var(--secondary-blue);
+    transform: scale(1.1);
+}
+
+/* Optional responsive button adjustments */
+@media (max-width: 768px) {
+    .video-button {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-button {
+        width: 40px;
+        height: 40px;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+/* Keep your media queries and other responsive styles here */
+
     
     /* Print Styles */
     @media print {
@@ -945,6 +994,50 @@ header {
         }
     }
     
+/* Your existing styles above... */
+
+/* Media Queries */
+/* Extra large devices (large desktops, 1200px and above) */
+@media (min-width: 1200px) {
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    .hero-content p {
+        font-size: 1.5rem;
+    }
+}
+
+/* Large devices (desktops, 992px and above) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    .hero-content p {
+        font-size: 1.25rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and above) */
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Add styles for tablets */
+}
+
+/* Small devices (landscape phones, 576px and above) */
+@media (min-width: 576px) and (max-width: 767px) {
+    /* Add styles for small devices */
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575px) {
+    /* Add styles for phones */
+}
+
+/* Print Styles (already exists in your code) */
+@media print {
+    /* Your print-specific styles */
+}
+
+
     /* Orientation Warning Styles */
     #orientationWarning {
         position: fixed;
@@ -962,3 +1055,73 @@ header {
         font-size: 1.5rem;
         padding: 2rem;
     }
+
+    /* Hamburger Menu Styles for Mobile */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .menu-expanded {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: #0066cc; /* Your header color */
+        width: 100%;
+        height: 100vh; /* Full screen on open */
+        z-index: 1000;
+    }
+
+    .menu-expanded a {
+        display: block;
+        text-align: center;
+        padding: 1rem;
+        color: white;
+        font-size: 1.5rem;
+        text-decoration: none;
+    }
+
+
+    /* Show the menu when 'show' class is added */
+    .menu-expanded.show {
+        display: block;
+    }
+}
+
+/* For Desktop View */
+@media (min-width: 769px) {
+    .hamburger-menu {
+        display: none;
+    }
+
+    .menu-expanded {
+        display: none;
+    }
+}
+
+
+/* Video Wrapper */
+.responsive-video {
+    position: relative;
+    width: 100%; /* Full width */
+    max-width: 800px; /* Set a max width for larger screens */
+    margin: 0 auto; /* Center the video */
+  }
+  
+  /* Ensure video maintains aspect ratio and resizes properly */
+  .responsive-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
